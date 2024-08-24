@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function() {
     const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let totalPontos = 0;
 
@@ -29,8 +29,16 @@ document.addEventListener('DOMContentLoaded', function() {
             let pontosLinha = 0;
 
             for (let j = 0; j < 5; j++) {
-                const valor = cells[j].getElementsByTagName('input')[0].value.trim().toUpperCase();
-                if (valor.startsWith(letraAtual) && valor !== '') {
+                const input = cells[j].getElementsByTagName('input')[0];
+                const valor = input.value.trim().toUpperCase();
+                
+                // Reseta o estilo do input
+                input.classList.remove('invalido');
+
+                if (valor === '' || !valor.startsWith(letraAtual)) {
+                    // Se o campo estiver vazio ou não começar com a letra sorteada, marca como inválido
+                    input.classList.add('invalido');
+                } else {
                     pontosLinha += 10;
                 }
             }
@@ -40,7 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         document.getElementById('totalPontos').textContent = `Total de Pontos: ${totalPontos}`;
-        document.getElementById('jogoForm').reset();
         document.getElementById('letraSorteada').textContent = '';
     });
 });
