@@ -13,24 +13,20 @@
         <p id="letraSorteada"></p>
         
         <form id="jogoForm">
-            <table>
+            <table id="jogoTabela">
                 <tr>
                     <th>País</th>
                     <th>Pessoa</th>
                     <th>Fruta</th>
                     <th>Animal</th>
                     <th>Objeto</th>
+                    <th>Pontos</th>
                 </tr>
-                <tr>
-                    <td><input type="text" id="pais" required></td>
-                    <td><input type="text" id="pessoa" required></td>
-                    <td><input type="text" id="fruta" required></td>
-                    <td><input type="text" id="animal" required></td>
-                    <td><input type="text" id="objeto" required></td>
-                </tr>
+                <!-- Linhas serão geradas dinamicamente -->
             </table>
             <button type="submit">Verificar</button>
         </form>
+        <p id="totalPontos">Total de Pontos: 0</p>
     </div>
 
     <script src="script.js"></script>
