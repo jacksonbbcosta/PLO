@@ -1,53 +1,65 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    let totalPontos = 0;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
 
-    // Gera as 10 linhas na tabela
-    const tabela = document.getElementById('jogoTabela');
-    for (let i = 0; i < 10; i++) {
-        const row = tabela.insertRow();
-        for (let j = 0; j < 5; j++) {
-            const cell = row.insertCell();
-            cell.innerHTML = `<input type="text" class="campo">`;
-        }
-        row.insertCell().textContent = '0';  // Pontos iniciais
-    }
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 600px;
+}
 
-    document.getElementById('sortearLetra').addEventListener('click', function() {
-        const letraSorteada = letras[Math.floor(Math.random() * letras.length)];
-        document.getElementById('letraSorteada').textContent = `Letra sorteada: ${letraSorteada}`;
-    });
+h1 {
+    margin-bottom: 20px;
+}
 
-    document.getElementById('jogoForm').addEventListener('submit', function(e) {
-        e.preventDefault();
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 10px;
+}
 
-        const letraAtual = document.getElementById('letraSorteada').textContent.replace('Letra sorteada: ', '');
-        const linhas = tabela.rows;
+button:hover {
+    background-color: #0056b3;
+}
 
-        for (let i = 1; i < linhas.length; i++) {  // Pula a linha de cabeçalho
-            const cells = linhas[i].getElementsByTagName('td');
-            let pontosLinha = 0;
+p {
+    margin: 20px 0;
+    font-size: 1.2em;
+    font-weight: bold;
+}
 
-            for (let j = 0; j < 5; j++) {
-                const input = cells[j].getElementsByTagName('input')[0];
-                const valor = input.value.trim().toUpperCase();
-                
-                // Reseta o estilo do input
-                input.classList.remove('invalido');
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
 
-                if (valor === '' || !valor.startsWith(letraAtual)) {
-                    // Se o campo estiver vazio ou não começar com a letra sorteada, marca como inválido
-                    input.classList.add('invalido');
-                } else {
-                    pontosLinha += 10;
-                }
-            }
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
 
-            cells[5].textContent = pontosLinha;  // Atualiza a pontuação da linha
-            totalPontos += pontosLinha;
-        }
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
 
-        document.getElementById('totalPontos').textContent = `Total de Pontos: ${totalPontos}`;
-        document.getElementById('letraSorteada').textContent = '';
-    });
-});
+input[type="text"].invalido {
+    border: 2px solid red;
+    background-color: #f8d7da;
+}
