@@ -4,7 +4,7 @@
 
     // Gera as 10 linhas na tabela
     const tabela = document.getElementById('jogoTabela');
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
         const row = tabela.insertRow();
         for (let j = 0; j < 5; j++) {
             const cell = row.insertCell();
